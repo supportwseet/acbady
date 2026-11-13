@@ -94,7 +94,7 @@
             </div>
 
             <div class="footer-made">
-                Made With Love By EL-Dawla For Acbady
+                Made With Love By <span style="color: white; font-weight: 900">EL-Dawla</span> For Acbady
                 <i class="bi bi-heart-fill"></i>
             </div>
         </div>

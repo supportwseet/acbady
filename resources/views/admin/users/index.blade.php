@@ -59,6 +59,7 @@
             color: #c4b596;
             border-radius: 14px;
             font-size: 25px;
+            flex-shrink: 0;
         }
 
         .users-panel {
@@ -164,6 +165,18 @@
             color: #bd4444;
         }
 
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            background: #f1eee8;
+            color: #79694c;
+        }
+
         .position-form {
             display: flex;
             gap: 8px;
@@ -194,13 +207,15 @@
             color: #fff;
         }
 
-        .btn-status {
+        .btn-status,
+        .btn-role {
             border: 0;
             border-radius: 8px;
             padding: 9px 13px;
             font-size: 11px;
             font-weight: 800;
             white-space: nowrap;
+            width: 100%;
         }
 
         .btn-disable {
@@ -221,6 +236,36 @@
         .btn-enable:hover {
             background: #27834a;
             color: #fff;
+        }
+
+        .btn-role-admin {
+            background: #f1eee8;
+            color: #79694c;
+        }
+
+        .btn-role-admin:hover {
+            background: #79694c;
+            color: #fff;
+        }
+
+        .btn-role-user {
+            background: #292929;
+            color: #fff;
+        }
+
+        .btn-role-user:hover {
+            background: #555;
+            color: #fff;
+        }
+
+        .owner-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: #79694c;
+            background: #f1eee8;
+            padding: 9px 12px;
+            border-radius: 8px;
+            text-align: center;
         }
 
         .empty-state {
@@ -283,10 +328,6 @@
             .user-actions form {
                 width: 100%;
             }
-
-            .btn-status {
-                width: 100%;
-            }
         }
 
         @media (max-width: 400px) {
@@ -316,7 +357,7 @@
 
                     <div>
                         <h1>إدارة الاكبادس</h1>
-                        <p>من هنا تقدر تتحكم في حسابات الاعضاء ومناصبهم.. السلطة في ايدك يا أدمن 😂</p>
+                        <p>من هنا تقدر تتحكم في حسابات الاعضاء </p>
                     </div>
                 </div>
             </div>
@@ -355,6 +396,7 @@
 
                 @forelse($users as $user)
                     <div class="user-card">
+
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 user-card-top">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="user-avatar">
@@ -383,45 +425,73 @@
                                 </div>
                             </div>
 
-                            <span class="status-badge {{ $user->is_active ? 'status-active' : 'status-disabled' }}">
-                                <i class="bi {{ $user->is_active ? 'bi-check-circle-fill' : 'bi-lock-fill' }}"></i>
-                                {{ $user->is_active ? 'الحساب نشط' : 'الحساب مقفول' }}
-                            </span>
-                        </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="status-badge {{ $user->is_active ? 'status-active' : 'status-disabled' }}">
+                                    <i class="bi {{ $user->is_active ? 'bi-check-circle-fill' : 'bi-lock-fill' }}"></i>
+                                    {{ $user->is_active ? 'الحساب نشط' : 'الحساب مقفول' }}
+                                </span>
 
-                        <div class="row g-3 align-items-end mt-2">
-                            <div class="col-lg-8">
-                                <label class="form-label small fw-bold">منصب العضو</label>
-
-                                <form action="{{ route('admin.users.position', $user->id) }}" method="POST"
-                                    class="position-form">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <input type="text" name="position" class="form-control position-input"
-                                        value="{{ old('position', $user->position) }}" maxlength="100" required>
-
-                                    <button type="submit" class="btn-save-position">
-                                        <i class="bi bi-pencil-square"></i>
-                                        حفظ المنصب
-                                    </button>
-                                </form>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <form action="{{ route('admin.users.toggle-status', $user->id) }}" method="POST"
-                                    onsubmit="return confirm('{{ $user->is_active ? 'هل انت متأكد انك عايز تقفل الحساب؟' : 'هل انت متأكد انك عايز تفعل الحساب؟' }}')">
-                                    @csrf
-                                    @method('PATCH')
-
-                                    <button type="submit"
-                                        class="btn-status {{ $user->is_active ? 'btn-disable' : 'btn-enable' }}">
-                                        <i class="bi {{ $user->is_active ? 'bi-lock-fill' : 'bi-unlock-fill' }}"></i>
-                                        {{ $user->is_active ? 'قفل الحساب' : 'تفعيل الحساب' }}
-                                    </button>
-                                </form>
+                                <span class="role-badge">
+                                    <i class="bi bi-shield"></i>
+                                    {{ $user->account_type === 'admin' ? 'أدمن' : 'مستخدم عادي' }}
+                                </span>
                             </div>
                         </div>
+
+                        @if($user->email !== env('OWNER'))
+                            <div class="row g-3 align-items-end mt-2">
+
+                                <div class="col-lg-5">
+                                    <label class="form-label small fw-bold">منصب العضو</label>
+
+                                    <form action="{{ route('admin.users.position', $user->id) }}" method="POST"
+                                        class="position-form">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <input type="text" name="position" class="form-control position-input"
+                                            value="{{ old('position', $user->position) }}" required maxlength="100">
+
+                                        <button type="submit" class="btn-save-position">
+                                            <i class="bi bi-pencil-square"></i>
+                                            حفظ المنصب
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 user-actions">
+                                    <form action="{{ route('admin.users.toggle-role', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <button type="submit"
+                                            class="btn-role {{ $user->account_type === 'admin' ? 'btn-role-admin' : 'btn-role-user' }}">
+                                            <i class="bi bi-shield-lock"></i>
+                                            {{ $user->account_type === 'admin' ? 'تحويل لمستخدم عادي' : 'تحويل لأدمن' }}
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 user-actions">
+                                    <form action="{{ route('admin.users.toggle-status', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <button type="submit" class="btn-status {{ $user->is_active ? 'btn-disable' : 'btn-enable' }}">
+                                            <i class="bi {{ $user->is_active ? 'bi-lock-fill' : 'bi-unlock-fill' }}"></i>
+                                            {{ $user->is_active ? 'قفل الحساب' : 'تفعيل الحساب' }}
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        @else
+                            <div class="owner-label mt-3">
+                                <i class="bi bi-shield-fill-check"></i>
+                                الادمن الاساسي
+                            </div>
+                        @endif
+
                     </div>
                 @empty
                     <div class="empty-state">

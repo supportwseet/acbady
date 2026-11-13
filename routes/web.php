@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::middleware(["CheckStatus", "auth"])->group(function () {
+Route::middleware(['CheckStatus', 'auth'])->group(function () {
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'myProfile'])->name('profile');
 
@@ -76,6 +76,9 @@ Route::middleware(['auth', 'admin'])
 
         Route::put('/users/{user}/position', [AdminController::class, 'updatePosition'])
             ->name('users.position');
+
+        Route::patch('/users/{user}/toggle-role', [AdminController::class, 'toggleRole'])
+            ->name('users.toggle-role');
 
         Route::patch('/users/{user}/toggle-status', [AdminController::class, 'toggleStatus'])
             ->name('users.toggle-status');

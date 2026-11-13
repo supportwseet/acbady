@@ -30,12 +30,10 @@ class loginController extends Controller
                 $request->session()->regenerateToken();
 
                 return back()
-                    ->withErrors([
-                        'email' => 'الحساب تم إيقافه بواسطة الإدارة.',
-                    ])
-                    ->onlyInput('email');
+                    ->with([
+                        'error' => 'الحساب تم إيقافه بواسطة الإدارة.',
+                    ]);
             }
-
 
             $request->session()->regenerate();
 

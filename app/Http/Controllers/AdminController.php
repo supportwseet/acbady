@@ -9,9 +9,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::query()
-            ->where('account_type', 'user')
-            ->when($request->search, function ($query, $search) {
+        $users = User::query()->when($request->search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
                         ->orWhere('email', 'like', "%{$search}%")
@@ -53,5 +51,26 @@ class AdminController extends Controller
             ? 'تم تفعيل الحساب بنجاح.'
             : 'تم إيقاف الحساب بنجاح.'
         );
+    }
+
+    public function toggleRole(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return back()->withErrors([
+                'role' => 'مينفعش تغير نوع حسابك من هنا.',
+            ]);
+        }
+
+        $user->account_type = $user->account_type === 'admin' ? 'user' : 'admin';
+
+        if ($user->account_type === 'user' && empty($user->position)) {
+            $user->position = 'عضو من الاكبادس';
+        }
+
+        $user->save();
+
+        return back()->with('success', $user->account_type === 'admin'
+            ? 'تم تحويل الحساب إلى أدمن بنجاح.'
+            : 'تم تحويل الحساب إلى مستخدم عادي بنجاح.');
     }
 }

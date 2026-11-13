@@ -51,7 +51,7 @@
 
         .home-container {
             width: min(1160px, 92%);
-            margin: auto;
+            margin: 30px auto;
         }
 
 
@@ -63,7 +63,6 @@
 
         .hero-content {
             max-width: 800px;
-            margin: auto;
         }
 
         .hero-label {
@@ -168,6 +167,7 @@
             border-radius: 15px;
             padding: 40px;
             text-align: center;
+            margin-top: 100px !important
         }
 
         .about-box h3 {
@@ -345,6 +345,9 @@
 
 
         @media(max-width: 650px) {
+            .hero-content {
+                margin: 110px auto;
+            }
             .cards {
                 grid-template-columns: 1fr;
             }
@@ -383,154 +386,154 @@
 
     <x-navbar />
 
-<main>
-    <section class="hero" id="home">
-        <div class="home-container hero-content">
+    <main>
+        <section class="hero" id="home">
+            <div class="home-container hero-content">
 
 
-            <h1 class="hero-label">Acbady Platform</h1>
-
-            <p>
-                أخيرا وصلت! كنا مستنيينك من ساعة ما عملنا المنصة،
-                انت قاعد فاضي يخويا؟ طيب قوم اقف يلا
-            </p>
-
-            <div class="hero-buttons">
-                <a href="{{ url('/posts') }}" class="home-btn home-btn-primary">ألافيهاتس</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="home-container">
-            <div class="section-title">
-                <h2>مين الأكبادس دول؟</h2>
-                <p>انت مين يكدس؟ لما اعرف هقولك</p>
-            </div>
-
-            <div class="about-box">
-                <h3> El Acbads</h3>
+                <h1 class="hero-label">Acbady Platform</h1>
 
                 <p>
-                    ادخل يا كبدي بس احب اقولك يا اما هتبضن يا اما هتتبضن
-
-                    <br>
-
-                    هتلاقي هنا منشورات ومواقف وحكايات من يومنا بضان سيبك منها يكبدس
+                    أخيرا وصلت! كنا مستنيينك من ساعة ما عملنا المنصة،
+                    انت قاعد فاضي يخويا؟ طيب قوم اقف يلا
                 </p>
-            </div>
-        </div>
-    </section>
 
-    <section class="features" id="activities">
-        <div class="home-container">
-            <div class="section-title">
-                <small>دليل الاستخدام</small>
-                <h2>اقسام الموقع</h2>
-                <p>اختار القسم اللي تحب تتفرج عليه.</p>
-            </div>
-
-            <div class="cards">
-                <div class="home-card">
-                    <div class="card-icon">👑</div>
-                    <h3>مؤسسو الأكبادس</h3>
-                    <p>تعرف على الناس اللي كانت سبب في وجود الموسسه ده. المسؤولية عليهم طبعا.</p>
-                </div>
-
-                <div class="home-card">
-                    <div class="card-icon">📰</div>
-                    <h3>منشورات الأكبادس</h3>
-                    <p>آخر الأخبار والتصريحات والمواقف اللي ملهاش أي لازمة، بس لازم تتوثق.</p>
-                </div>
-
-                <div class="home-card">
-                    <div class="card-icon">🪪</div>
-                    <h3>ملفك الشخصي</h3>
-                    <p>هويتك الرسمية ككبدس. مكان صورتك واسمك وتاريخ إنجازاتك المشبوهة.</p>
-                </div>
-
-                <div class="home-card">
-                    <div class="card-icon">📢</div>
-                    <h3>إضافة منشور يبضن</h3>
-                    <p>عندك حاجة عايز تقولها؟ عندك رأي محدش طلبه؟ المنصة فاتحة لك صدرها.</p>
-                </div>
-
-                <div class="home-card">
-                    <div class="card-icon">🤡</div>
-                    <h3>أرشيف المواقف</h3>
-                    <p>كل موقف تاريخي اتعمل فيه فضيحة محترمة، علشان التاريخ مبيسامحش.</p>
-                </div>
-
-                <div class="home-card">
-                    <div class="card-icon">🏆</div>
-                    <h3>كبدس الشهر</h3>
-                    <p>تكريم الشخص اللي أثبت إن مفيش سقف للعبث. المنافسة شرسة والكل متهم.</p>
+                <div class="hero-buttons">
+                    <a href="{{ url('/posts') }}" class="home-btn home-btn-primary">ألافيهاتس</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="founders">
-        <div class="home-container">
-            <div class="founders-box">
-                <div>
-                    <h3>عايز تعرف مين بدأ البضن علي الاخرين</h3>
-                    <p>اتعرف على مؤسسي الأكبادس والناس اللي وافقت تشارك في المهزلة دي.</p>
+        <section id="about">
+            <div class="home-container">
+                <div class="section-title">
+                    <h2>مين الأكبادس دول؟</h2>
+                    <p>انت مين يكدس؟ لما اعرف هقولك</p>
                 </div>
 
-                <a href="{{ url('/founders') }}">قابل المتهمين ←</a>
-            </div>
-        </div>
-    </section>
+                <div class="about-box">
+                    <h3> El Acbads</h3>
 
-    <section class="rules" id="rules">
-        <div class="home-container">
-            <div class="section-title">
-                <small>اقرأ قبل ما تتورط</small>
-                <h2>دستور الكبدس المحترم</h2>
-            </div>
+                    <p>
+                        ادخل يا كبدي بس احب اقولك يا اما هتبضن يا اما هتتبضن
 
-            <div class="rule-list">
-                <div class="rule">
-                    <span class="rule-number">01</span>
-                    <span>ممنوع الزعل من الهزار، بس برضه اعرف حدودك يا كبدس.</span>
-                </div>
+                        <br>
 
-                <div class="rule">
-                    <span class="rule-number">02</span>
-                    <span>ممنوع نشر صور أو بيانات حد من غير إذنه.</span>
-                </div>
-
-                <div class="rule">
-                    <span class="rule-number">03</span>
-                    <span>ممنوع التنمر أو الإهانة الحقيقية. إحنا بنضحك مش بنأذي.</span>
-                </div>
-
-                <div class="rule">
-                    <span class="rule-number">04</span>
-                    <span>أي منشور يتجاوز الحدود ممكن يختفي أسرع من مرتب آخر الشهر.</span>
-                </div>
-
-                <div class="rule">
-                    <span class="rule-number">05</span>
-                    <span>لو دخلت هنا وطلعت من غير ما تبضن او تتبضن راجع إعداداتك.</span>
+                        هتلاقي هنا منشورات ومواقف وحكايات من يومنا بضان سيبك منها يكبدس
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section>
-        <div class="home-container">
-            <div class="final-box">
-                <h2>لسه بتقرأ؟ يا عم خش اتبضن </h2>
+        <section class="features" id="activities">
+            <div class="home-container">
+                <div class="section-title">
+                    <small>دليل الاستخدام</small>
+                    <h2>اقسام الموقع</h2>
+                    <p>اختار القسم اللي تحب تتفرج عليه.</p>
+                </div>
 
-                <p>أدخل يكبدس ابضن علي الخلق بأي افيه</p>
+                <div class="cards">
+                    <div class="home-card">
+                        <div class="card-icon">👑</div>
+                        <h3>مؤسسو الأكبادس</h3>
+                        <p>تعرف على الناس اللي كانت سبب في وجود الموسسه ده. المسؤولية عليهم طبعا.</p>
+                    </div>
 
-                <strong>El Acbads Group.</strong>
+                    <div class="home-card">
+                        <div class="card-icon">📰</div>
+                        <h3>منشورات الأكبادس</h3>
+                        <p>آخر الأخبار والتصريحات والمواقف اللي ملهاش أي لازمة، بس لازم تتوثق.</p>
+                    </div>
+
+                    <div class="home-card">
+                        <div class="card-icon">🪪</div>
+                        <h3>ملفك الشخصي</h3>
+                        <p>هويتك الرسمية ككبدس. مكان صورتك واسمك وتاريخ إنجازاتك المشبوهة.</p>
+                    </div>
+
+                    <div class="home-card">
+                        <div class="card-icon">📢</div>
+                        <h3>إضافة منشور يبضن</h3>
+                        <p>عندك حاجة عايز تقولها؟ عندك رأي محدش طلبه؟ المنصة فاتحة لك صدرها.</p>
+                    </div>
+
+                    <div class="home-card">
+                        <div class="card-icon">🤡</div>
+                        <h3>أرشيف المواقف</h3>
+                        <p>كل موقف تاريخي اتعمل فيه فضيحة محترمة، علشان التاريخ مبيسامحش.</p>
+                    </div>
+
+                    <div class="home-card">
+                        <div class="card-icon">🏆</div>
+                        <h3>كبدس الشهر</h3>
+                        <p>تكريم الشخص اللي أثبت إن مفيش سقف للعبث. المنافسة شرسة والكل متهم.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+
+        <section id="founders">
+            <div class="home-container">
+                <div class="founders-box">
+                    <div>
+                        <h3>عايز تعرف مين بدأ البضن علي الاخرين</h3>
+                        <p>اتعرف على مؤسسي الأكبادس والناس اللي وافقت تشارك في المهزلة دي.</p>
+                    </div>
+
+                    <a href="{{ url('/founders') }}">قابل المتهمين ←</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="rules" id="rules">
+            <div class="home-container">
+                <div class="section-title">
+                    <small>اقرأ قبل ما تتورط</small>
+                    <h2>دستور الكبدس المحترم</h2>
+                </div>
+
+                <div class="rule-list">
+                    <div class="rule">
+                        <span class="rule-number">01</span>
+                        <span>ممنوع الزعل من الهزار، بس برضه اعرف حدودك يا كبدس.</span>
+                    </div>
+
+                    <div class="rule">
+                        <span class="rule-number">02</span>
+                        <span>ممنوع نشر صور أو بيانات حد من غير إذنه.</span>
+                    </div>
+
+                    <div class="rule">
+                        <span class="rule-number">03</span>
+                        <span>ممنوع التنمر أو الإهانة الحقيقية. إحنا بنضحك مش بنأذي.</span>
+                    </div>
+
+                    <div class="rule">
+                        <span class="rule-number">04</span>
+                        <span>أي منشور يتجاوز الحدود ممكن يختفي أسرع من مرتب آخر الشهر.</span>
+                    </div>
+
+                    <div class="rule">
+                        <span class="rule-number">05</span>
+                        <span>لو دخلت هنا وطلعت من غير ما تبضن او تتبضن راجع إعداداتك.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="home-container">
+                <div class="final-box">
+                    <h2>لسه بتقرأ؟ يا عم خش اتبضن </h2>
+
+                    <p>أدخل يكبدس ابضن علي الخلق بأي افيه</p>
+
+                    <strong>El Acbads Group.</strong>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <x-footer />
 

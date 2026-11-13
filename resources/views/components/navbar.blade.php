@@ -27,21 +27,21 @@
                 <li class="nav-item">
                     <a href="{{ route('posts.index') }}" class="nav-link nav-custom-link">
                         <i class="bi bi-chat-square-text"></i>
-                        <span>منشورات الاكبادس</span>
+                        <span>ألمنشورات</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('founders') }}" class="nav-link nav-custom-link">
                         <i class="bi bi-award"></i>
-                        <span>مؤسسو الاكبادس</span>
+                        <span>ألمؤسسين</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link nav-custom-link">
                         <i class="bi bi-people-fill"></i>
-                        <span>كل الاكبادس</span>
+                        <span>الاكبادس</span>
                     </a>
                 </li>
 
@@ -57,17 +57,10 @@
                         <li class="nav-item">
                             <a class="nav-link nav-custom-link" href="{{ route('admin.users.index') }}">
                                 <i class="bi bi-shield-lock ms-2"></i>
-                                إدارة الاكبادس
+                                ألاداره
                             </a>
                         </li>
                     @endif
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link nav-custom-link" href="{{ route('login') }}">
-                            <i class="bi bi-megaphone-fill"></i>
-                            <span>انشر تبضينتك</span>
-                        </a>
-                    </li>
                 @endauth
             </ul>
 
