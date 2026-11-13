@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
@@ -18,6 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => AdminMiddleware::class,
             'CheckStatus' => CheckStatus::class,
         ]);
+
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
