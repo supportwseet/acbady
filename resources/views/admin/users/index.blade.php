@@ -435,17 +435,23 @@
                                     <i class="bi bi-shield"></i>
                                     {{ $user->account_type === 'admin' ? 'أدمن' : 'مستخدم عادي' }}
                                 </span>
+
+                                @if($user->Isfounder)
+                                    <span class="role-badge">
+                                        <i class="bi bi-star-fill"></i>
+                                        مؤسس
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
                         @if($user->email !== env('OWNER'))
                             <div class="row g-3 align-items-end mt-2">
 
-                                <div class="col-lg-5">
+                                <div class="col-lg-6">
                                     <label class="form-label small fw-bold">منصب العضو</label>
 
-                                    <form action="{{ route('admin.users.position', $user->id) }}" method="POST"
-                                        class="position-form">
+                                    <form action="{{ route('admin.users.position', $user->id) }}" method="POST" class="position-form">
                                         @csrf
                                         @method('PUT')
 
@@ -459,7 +465,7 @@
                                     </form>
                                 </div>
 
-                                <div class="col-lg-3 col-md-6 user-actions">
+                                <div class="col-lg-2 col-md-4 user-actions">
                                     <form action="{{ route('admin.users.toggle-role', $user->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
@@ -467,12 +473,24 @@
                                         <button type="submit"
                                             class="btn-role {{ $user->account_type === 'admin' ? 'btn-role-admin' : 'btn-role-user' }}">
                                             <i class="bi bi-shield-lock"></i>
-                                            {{ $user->account_type === 'admin' ? 'تحويل لمستخدم عادي' : 'تحويل لأدمن' }}
+                                            {{ $user->account_type === 'admin' ? 'إلغاء الأدمن' : 'تعيين أدمن' }}
                                         </button>
                                     </form>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 user-actions">
+                                <div class="col-lg-2 col-md-4 user-actions">
+                                    <form action="{{ route('admin.users.toggle-founder', $user->id) }}" method="POST" >
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <button type="submit" class="btn-status {{ $user->Isfounder ? 'btn-disable' : 'btn-enable' }}">
+                                            <i class="bi bi-star-fill"></i>
+                                            {{ $user->Isfounder ? 'إلغاء المؤسس' : 'تعيين مؤسس' }}
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-2 col-md-4 user-actions">
                                     <form action="{{ route('admin.users.toggle-status', $user->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
@@ -499,6 +517,7 @@
                         <div>مفيش مستخدمين مطابقين للبحث.</div>
                     </div>
                 @endforelse
+
 
                 <div>
                     {{ $users->links() }}

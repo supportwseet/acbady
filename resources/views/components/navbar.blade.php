@@ -5,8 +5,7 @@
                 <i class="bi bi-people-fill"></i>
             </span>
             <span class="brand-text">
-                EL <span>ACBADS.</span>
-                <small>WE MENIA TEAM</small>
+                EL <span>ACBADS</span>
             </span>
         </a>
 

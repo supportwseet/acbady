@@ -9,7 +9,7 @@ class FounderController extends Controller
     public function index()
     {
         $founders = User::withCount('posts')
-            ->where('position', 'like', '%مؤسس%')
+            ->where('Isfounder', 1)
             ->orderByDesc('likes_count')
             ->latest()
             ->get();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\loginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -19,6 +20,12 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get("/login", [loginController::class, 'index'])->name("login")->middleware('guest');
     Route::get("/register", [RegisterController::class, 'index'])->name("register")->middleware('guest');
+
+    Route::get('/api/google-callback', [GoogleAuthController::class, 'callback'])
+        ->name('google.callback');
+
+    Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect'])
+        ->name('google.redirect');
 
     Route::post("/login", [loginController::class, 'login'])->middleware('guest');
     Route::post("/register", [RegisterController::class, 'register'])->middleware('guest');
@@ -82,4 +89,7 @@ Route::middleware(['auth', 'admin'])
 
         Route::patch('/users/{user}/toggle-status', [AdminController::class, 'toggleStatus'])
             ->name('users.toggle-status');
+
+        Route::patch('/users/{user}/toggle-founder', [AdminController::class, 'toggleFounder'])
+            ->name('users.toggle-founder');
     });

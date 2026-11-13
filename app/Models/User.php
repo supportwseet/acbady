@@ -10,17 +10,17 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-
     protected $fillable = [
         'name',
         'email',
         'password',
         'governorate',
-        'profile_image',
         'account_type',
-        'is_active',
         'position',
+        'google_id',
         'likes_count',
+        'profile_image',
+        'Isfounder',
     ];
 
 
@@ -32,8 +32,8 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'Isfounder' => 'boolean',
+            'is_active' => 'boolean',
         ];
     }
 

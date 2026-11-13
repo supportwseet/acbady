@@ -23,6 +23,22 @@ class AdminController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
+    public function toggleFounder(User $user)
+    {
+        if ($user->email === env('OWNER')) {
+            return back()->withErrors([
+                'founder' => 'لا يمكن تعديل حالة المؤسس الرئيسي.',
+            ]);
+        }
+
+        $user->Isfounder = !$user->Isfounder;
+        $user->save();
+
+        return back()->with('success', $user->Isfounder
+            ? 'تم تعيين العضو كمؤسس بنجاح.'
+            : 'تم إلغاء صفة المؤسس بنجاح.');
+    }
+
     public function updatePosition(Request $request, User $user)
     {
         abort_unless($user->account_type === 'user', 404);
